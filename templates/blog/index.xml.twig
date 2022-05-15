@@ -7,7 +7,6 @@
         <lastBuildDate>{{ (paginator.results|last).publishedAt|default('now')|date('r', timezone='GMT') }}</lastBuildDate>
         <link>{{ url('blog_index') }}</link>
         <language>{{ app.request.locale }}</language>
-
         {% for post in paginator.results %}
             <item>
                 <title>{{ post.title }}</title>

@@ -138,18 +138,6 @@
     "nikic/php-parser": {
         "version": "v4.4.0"
     },
-    "php": {
-        "version": "7.3"
-    },
-    "phpdocumentor/reflection-common": {
-        "version": "2.2.0"
-    },
-    "phpdocumentor/reflection-docblock": {
-        "version": "5.2.2"
-    },
-    "phpdocumentor/type-resolver": {
-        "version": "1.4.0"
-    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -296,9 +284,6 @@
             "src/Kernel.php"
         ]
     },
-    "symfony/http-client-contracts": {
-        "version": "v2.2.0"
-    },
     "symfony/http-foundation": {
         "version": "v5.1.0-rc1"
     },
@@ -353,6 +338,9 @@
     "symfony/options-resolver": {
         "version": "v5.1.0-rc1"
     },
+    "symfony/password-hasher": {
+        "version": "v5.4.8"
+    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
@@ -394,6 +382,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.17.0"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.25.0"
     },
     "symfony/property-access": {
         "version": "v5.1.0-rc1"
@@ -439,9 +430,6 @@
     "symfony/security-http": {
         "version": "v5.1.0-rc1"
     },
-    "symfony/serializer": {
-        "version": "v5.2.0-beta1"
-    },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
@@ -483,9 +471,6 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
-    },
-    "symfony/twig-pack": {
-        "version": "v1.0.0"
     },
     "symfony/validator": {
         "version": "4.3",
@@ -568,8 +553,5 @@
     },
     "twig/twig": {
         "version": "v3.0.3"
-    },
-    "webmozart/assert": {
-        "version": "1.9.1"
     }
 }

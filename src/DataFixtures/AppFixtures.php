@@ -12,6 +12,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
+use App\Entity\NivelConfianza;
 use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\User;
@@ -37,6 +38,7 @@ class AppFixtures extends Fixture
         $this->loadUsers($manager);
         $this->loadTags($manager);
         $this->loadPosts($manager);
+        $this->loadNivelConfianza($manager);
     }
 
     private function loadUsers(ObjectManager $manager): void
@@ -96,6 +98,20 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    private function loadNivelConfianza(ObjectManager $manager): void
+    {
+        foreach ($this->getNivelesData() as [$id, $ncn, $ncz]) {
+            $nivel = new NivelConfianza();
+            $nivel->setId($id);
+            $nivel->setNcn($ncn);
+            $nivel->setNcz($ncz);
+
+            $manager->persist($nivel);
+        }
+
+        $manager->flush();
+    }
+
     private function getUserData(): array
     {
         return [
@@ -121,6 +137,22 @@ class AppFixtures extends Fixture
         ];
     }
 
+    private function getNivelesData()
+    {
+        
+        $niveles = [];
+        // $postData = [$title, $slug, $summary, $content, $publishedAt, $author, $tags, $comments];
+        $niveles[] = [1, '99.7%', 3];
+        $niveles[] = [2, '99.0%', 2.58];
+        $niveles[] = [3, '98.0%', 2.33];
+        $niveles[] = [4, '96.0%', 2.05];
+        $niveles[] = [5, '95.0%', 1.96];
+        $niveles[] = [6, '90.0%', 1.645];
+        $niveles[] = [7, '80.0%', 1.28];
+        $niveles[] = [8, '50.0%', 0.674];
+
+        return $niveles;
+    }
     private function getPostData()
     {
         $posts = [];

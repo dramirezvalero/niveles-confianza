@@ -15,6 +15,7 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
+use App\Repository\NivelConfianzaRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -25,6 +26,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Psr\Log\LoggerInterface;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -46,19 +48,28 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/routing.html#special-parameters
      */
-    public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
+    public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags, NivelConfianzaRepository $nivelCRepo, LoggerInterface $logger): Response
     {
+
+
+
         $tag = null;
         if ($request->query->has('tag')) {
             $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
         }
         $latestPosts = $posts->findLatest($page, $tag);
+        $logger->info('Mundo');
+        $logger->info(json_encode($nivelCRepo->findAll()));
+        $logger->info(print_r($nivelCRepo->findAll(), true));
+        $logger->info(var_export($nivelCRepo->findAll(), true));
+
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templates.html#template-naming
-        return $this->render('blog/index.'.$_format.'.twig', [
+        return $this->render('blog/index.' . $_format . '.twig', [
             'paginator' => $latestPosts,
+            'niveles' => $nivelCRepo->findAll(),
             'tagName' => $tag ? $tag->getName() : null,
         ]);
     }

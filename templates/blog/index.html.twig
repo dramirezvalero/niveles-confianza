@@ -3,6 +3,12 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
+
+Hola!
+        {% for post in niveles %}
+            {{post.ncn}}
+        {% endfor %}
+
     {% for post in paginator.results %}
         <article class="post">
             <h2>
